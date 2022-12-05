@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en,ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+
+    <title>Result</title>
+</head>
+<body bgcolor="ffffff" >
+    <div ></div>
+    
+    <form action="init" method="POST" class="form">
+        <h1 class="form_title">Результаты решения генетическим алгоритмом</h1>
+    
+
+    
+        <table>
+            <thead>
+                <tr>
+                  <th></th>
+                  <th>Первый товар</th>
+                  <th>Второй товар</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td >Цена товара</td>
+                    <td >{{x1p}}</td>
+                    <td >{{x2p}}</td>
+                </tr>
+                 <tr>
+                    <td >Суточный запас сырья</td>
+                    <td colspan="2">{{mat_sum}}</td>
+                </tr>
+                 <tr>
+                    <td >Расход сырья единицу товара</td>
+                    <td >{{x1mat}}</td>
+                    <td >{{x2mat}}</td>
+                </tr>
+                <tr>
+                    <td >Оптимальный план</td>
+                    <td >{{x1}}</td>
+                    <td >{{x2}}</td>
+                </tr>
+                <tr>
+                    <td >Прибыль</td>
+                    <td colspan="2">{{sum}}</td>
+                </tr>
+                <tr>
+                    <td >Теневая цена сырья</td>
+                    <td >{{shadow_price_1}}</td>
+                    <td >{{shadow_price_2}}</td>
+                </tr>
+                <tr>
+                    <td >Типов будет производится</td>
+                    <td colspan="2">{{type_count}}</td>
+                </tr>
+            </tbody>
+             
+        </table>
+    
+    <img src='data:image/png;base64,{{ chart }}' class="myimg" >
+
+    
+    
+
+    </form>
+    
+</body>
+</html>

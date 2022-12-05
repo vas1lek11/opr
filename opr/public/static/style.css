@@ -1,0 +1,230 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(-45deg,rgb(25, 151, 235),rgb(255, 255, 255));
+  background-size: cover;
+  /* background-image: url(https://drive.google.com/uc?export=view&id=1qWDpku_0dkN2U5YJI-OZ8xU3JnERkkrI); */
+
+  background-repeat: repeat;
+}
+.form {
+  margin-top: 40px;
+  margin-bottom: 5%;
+  width: 90%; ; /* Ширина 300 пикселей*/
+  padding: 32px; /* #  Внутренний отступ 32 пикселей */ 
+  border-radius: 10px;      /* # Закруглённую рамку или скруглить углы элемента.  */
+  background-color: rgba(255, 255, 255, 0.658);
+  box-shadow: 0 4px 16px #ccc;     /* # Тень элемента. 0 - смещение Х, 4 - смещение Y, 16 - степень размытия, #ccc - цвет. */
+  font-family: sans-serif;     /* # Шрифт.  */
+  letter-spacing: 1px;     /* # Расстояние между буквами */
+}
+.form_title { 
+  text-align: center; /*👉# Текст по центру👈*/
+  margin: 0 0 32px 0; /*👉# Внешний отступ на всех четырех сторонах элемента. 👈*/
+  font-weight: normal;/*👉# Насыщенность шрифта, убираем жирность.*/
+}
+.form_button {
+  padding: 10px 20px;
+  border: none; /*👉# Без границы блока.👈*/
+  border-radius: 5px; /*👉# Радиус закругления👈*/
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  font-size: 1.5em;
+  color :#fff ; /*👉# Цвет текста👈*/
+  background-color: #0071f0;/*👉 # Цвет фона👈*/
+  outline: none; /*👉#  Внешней границы элемента 👈*/
+  cursor: pointer; /*👉# Тип курсора при наведение👈*/
+  transition: 0.3s; /*👉#  transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства👈*/
+}
+.form_grup {
+  
+  position: relative; /*👉# Положение элемента устанавливается относительно его исходного места. 👈*/
+  margin-bottom: 32px;/*👉# Внешний отступ снизу элемента 👈*/
+}
+.form_input {
+  font: 1.5em sans-serif;
+  width: 120px;
+  padding: 0 0 10px 10px;
+  border:none; /*👉# Без рамки.👈*/
+  border-bottom: 3px solid #9c9c9c; /*👉# Нижняя рамка 1 пиксель, цвет  #e0e0e0 👈*/
+  background-color: transparent;/*👉 # Фон будет прозрачным. 👈*/
+  outline: none;
+  transition: 0.3s;
+}
+.form_label {
+  font: 1.6em sans-serif;
+  position: left; /*👉# Абсолютное позиционирование.👈*/
+  display:inline-block;
+  top: 0; /*👉# Смещение позиционированного элемента относительно верхнего края 👈*/
+  z-index: -1;
+  color: #000000; /*👉# Цвет текска.👈*/
+  transition: 0.3s;
+}
+
+.form_button:focus,
+.form_button:hover{
+       background-color: rgba(0, 113, 240, 0.7); /*👉RGBA Цвет фона и значение прозрачности. 👈*/
+}
+.form_input:focus {
+  border-bottom: 3px solid #1a73a8;
+}
+.form_input:focus ~ .form_label,
+.form_input:not(:placeholder-shown) ~ .form_label {
+       top: -18px;
+       font-size:12px;
+       color: #e0e0e0;
+}
+/* для элемента input c type="radio" */
+.custom-radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+/* для элемента label связанного с .custom-radio */
+.custom-radio+label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+/* создание в label псевдоэлемента  before со следующими стилями */
+.custom-radio+label::before {
+  content: '';
+  display:block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #2b7ce7;
+  border-radius: 100%;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+/* стили при наведении курсора на радио */
+.custom-radio:not(:disabled):not(:checked)+label:hover::before {
+  border-color: #b3d7ff;
+}
+/* стили для активной радиокнопки (при нажатии на неё) */
+.custom-radio:not(:disabled):active+label::before {
+  background-color: #b3d7ff;
+  border-color: #b3d7ff;
+}
+/* стили для радиокнопки, находящейся в фокусе */
+.custom-radio:focus+label::before {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+/* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+.custom-radio:focus:not(:checked)+label::before {
+  border-color: #80bdff;
+}
+/* стили для радиокнопки, находящейся в состоянии checked */
+.custom-radio:checked+label::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+/* стили для радиокнопки, находящейся в состоянии disabled */
+.custom-radio:disabled+label::before {
+  background-color: #e9ecef;
+}
+  /* Style the tab */
+  .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      
+  }
+
+  /* Style the buttons inside the tab */
+  .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+  }
+
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+      background-color: rgba(84, 241, 70, 0.192);
+  }
+
+  /* Create an active/current tablink class */
+  .tab button.active {
+      background-color: rgba(62, 255, 62, 0.39);
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+      font: 22px sans-serif;
+      display: none;
+      padding: 6px 12px;
+      margin-bottom: 10px;
+      border: 2px solid #ccc;
+      border-top: none;
+  }
+table{
+  width: 100%;
+  table-layout: fixed;
+  table-layout: auto;
+  margin-top: 20px;
+  font-size: 22px;
+  border-collapse: collapse;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+th, td:first-child {
+  background: #92cef0;
+  color: rgb(0, 0, 0);
+  padding: 10px 40px;
+  }
+  th, td {
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: white;
+  }
+  td {
+    width: 20%;
+    text-align: center;
+    padding: 10px 40px;
+  background: #D8E6F3;
+  }
+
+.myimg{
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+#block1 {
+  float: left;
+  display: block;
+  width: auto;
+width: 500px;
+  margin-right: 20%;
+  }
+  
+  #block2 {
+  float: left;
+  display: block;
+  width: auto;
+  }
+  #knopki{
+    clear: both;
+  }
+
+input:invalid {
+  border-color: red;
+  color: red;
+  box-shadow: none;
+}
+input:focus:invalid {
+  border-color: red;
+  color: red;
+  box-shadow: none;
+}

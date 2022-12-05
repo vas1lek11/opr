@@ -1,0 +1,1 @@
+web: cd opr/ && python manage.py migrate && gunicorn opr.wsgi

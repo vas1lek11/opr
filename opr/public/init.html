@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en,ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">  
+    <!-- <link rel="stylesheet" href="static/style.css" type="text/css"> -->
+    <title>OPR</title>
+</head>
+<body>
+    <div ></div>
+    <br><br><br><br>
+    <form action="init" method="POST" class="form">
+        {% csrf_token %}
+        <h1 class="form_title">Задача о распределении сырья</h1>
+    
+    <div class="form_grup">      
+        <label class="form_label"> Стоимость первого товара: </label>
+        <input id="1" name="x1_coef" class="form_input"  value="20" title="Используйте числовой формат" pattern="^[0-9]+$">    
+    </div>
+
+    <div class="form_grup"> 
+        <label class="form_label"> Стоимость второго товара: </label>   
+        <input  name="x2_coef" class="form_input"   value="40" title="Используйте числовой формат" pattern="^[0-9]+$">    
+    </div>
+
+    <div class="form_grup">
+        <label class="form_label"> Количество материала на первый товар: </label>       
+        <input  name="x1_mat" class="form_input"   value="2" title="Используйте числовой формат" pattern="^[0-9]+$">    
+    </div>
+
+    <div class="form_grup">
+        <label class="form_label"> Количество материала на второй товар: </label>    
+        <input  name="x2_mat" class="form_input"   value="4" title="Используйте числовой формат" pattern="^[0-9]+$">    
+    </div>
+
+    <div class="form_grup">
+        <label class="form_label"> Суточный запас материала: </label>   
+        <input  name="mat_sum" class="form_input"  title="Используйте числовой формат" pattern="^[0-9]+$" value="100">    
+    </div>
+
+    <div class="form_grup">
+        <label class="form_label"> Объем реализации первого товара в процентах от общего: </label>  
+        <input name="ogr2" type="range" value="60" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+<output class="form_label">60</output> <div class="form_label">% </div>    
+        <!-- <input  name="ogr2" class="form_input"  placeholder="   " value="0.6">     -->
+    </div>
+        <h1>Настройки</h1>
+        <div class="form_label">Из-за конкуренции на рынке цена каждого из видов продукции может изменится: <br></div> 
+        <br>
+        <div id="block1">
+            
+            <h2>Первый тип</h2>
+
+            <input class="custom-radio" type="radio" name="percent" id="percent0" value="1" checked>
+        <label for="percent0" class="form_label" >Не изменится</label><br>
+
+        <input class="custom-radio" type="radio" name="percent" id="percent+" value="1.1">
+        <label for="percent+" class="form_label">Увеличится на 10%</label><br>
+
+        <input class="custom-radio" type="radio" name="percent" id="percent-" value="0.9">
+        <label for="percent-" class="form_label">Уменьшится на 10%</label><br>
+        </div>
+
+        <div id="block2">
+            <h2>Второй тип</h2>
+            <input class="custom-radio" type="radio" name="percent2" id="percent20" value="1" checked>
+        <label for="percent20" class="form_label" >Не изменится</label><br>
+
+        <input class="custom-radio" type="radio" name="percent2" id="percent2+" value="1.1">
+        <label for="percent2+" class="form_label">Увеличится на 10%</label><br>
+
+        <input class="custom-radio" type="radio" name="percent2" id="percent2-" value="0.9">
+        <label for="percent2-" class="form_label">Уменьшится на 10%</label><br>
+        </div>
+        
+<br><br><br><br><br><br><br><br><br>
+<br><br>
+        <div class="form_label">Закупить дополнительное сырье и увеличить суточный запас на 10 %
+        </div><br>
+        <input class="custom-radio" type="radio" name="additional" id="additional1"value="1.1" >
+        <label for="additional1" class="form_label">Да</label> <br>
+
+        <input class="custom-radio" type="radio" name="additional" id="additional2"value="1" checked>
+        <label for="additional2" class="form_label">Нет</label> <br>
+<br>
+<h1>Настройки генетического алгоритма</h1>
+<div id="block1">
+    <div class="form_grup" >
+        <label class="form_label"> Количество поколений: </label> 
+        <input  name="MAX_GENERATIONS" class="form_input"  title="Используйте числовой формат" pattern="^[0-9]+$" value="100">  
+       
+    </div>
+    <div class="form_grup" >
+        <label class="form_label" > Количество индивидов: </label>  
+        <input  name="POPULATION_SIZE" class="form_input"  title="Используйте числовой формат" pattern="^[0-9]+$" value="200">    
+    </div>
+</div>
+          <div id="block2">
+            <div class="form_grup" >
+                <label class="form_label"> Вероятность скрещивания: </label>  
+                <input name="P_CROSSOVER" type="range" value="90" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+    <output class="form_label">90</output> <div class="form_label">% </div>  
+                <!-- <input  name="P_CROSSOVER" class="form_input"  placeholder="   " value="0.9">     -->
+            </div>
+            <div class="form_grup" >
+                <label class="form_label"> Вероятность мутации: </label> 
+                <input name="P_MUTATION" type="range" value="10" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+    <output class="form_label">10</output><div class="form_label">% </div>   
+                <!-- <input  name="P_MUTATION" class="form_input"  placeholder="   " value="0.1">     -->
+            </div>
+          </div>
+        
+        
+        
+        
+<div id="knopki">
+    <input type="submit" name="button" class="form_button" value="Решить Симплекс методом">
+    <input type="submit" name="button" class="form_button" value="Решить Генетическим алгоритмом">
+</div>
+        
+
+    </form>
+
+</body>
+</html>
